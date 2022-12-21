@@ -1,5 +1,8 @@
+import AddUserData from "../../Component/AddUserData/AddUserData";
+import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
 import Home from "../../pages/Home/Home/Home";
+import Profile from "../../pages/Profile/Profile";
 import SignIn from "../../pages/SignIn/SignIn";
 import SignUp from "../../pages/SignUp/SignUp";
 
@@ -15,6 +18,14 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
+                path: '/profile',
+                element: <Profile />
+            },
+            {
+                path: '/info',
+                element: <AddUserData />
+            },
+            {
                 path: '/signup',
                 element: <SignUp />
             },
@@ -23,6 +34,9 @@ export const router = createBrowserRouter([
                 element: <SignIn />
             }
         ]
-
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />
     }
 ])

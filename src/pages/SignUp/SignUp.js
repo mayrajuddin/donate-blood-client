@@ -17,6 +17,7 @@ const SignUp = () => {
         }
         createUser(data.email, data.password)
             .then(result => {
+
                 const user = result.user
                 console.log(user);
                 const userInfo = {
@@ -27,7 +28,7 @@ const SignUp = () => {
                     .catch(err => {
                         console.log(err);
                     })
-                navigate('/')
+                navigate('/info')
                 console.log(user);
             })
             .catch(err => {
@@ -60,7 +61,7 @@ const SignUp = () => {
                         {regError && <p className="py-3">{regError}</p>}
                         <p className="text-center text-lg capitalize text-secondary">already have an account ? <Link to='/signin'>sign in</Link></p>
                     </div>
-                    <button type="button" className='btn text-base-100'>Sign Up</button>
+                    <button type="submit" className='btn text-base-100'>Sign Up</button>
                 </form>
             </div>
         </section>

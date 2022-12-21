@@ -47,12 +47,11 @@ const Header = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {user?.uid && <li><p>{user?.displayName}</p></li>}
                             <li>
-                                <Link className="justify-between">
+                                <Link to='/profile' className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
                                 </Link>
                             </li>
-                            <li><Link>Settings</Link></li>
+                            <li><Link to='/info'>update info</Link></li>
                             {user?.uid && <li><button type='button' onClick={handleLogOut}>LogOut</button></li>}
                         </ul>
                     </div>

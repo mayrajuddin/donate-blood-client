@@ -3,7 +3,18 @@ import React from 'react';
 const AddUserData = () => {
     const handleInfo = e => {
         e.preventDefault()
+        const form = e.target
+        const dob = form.dob.value
+        const gender = form.gender.value
+        const bGroup = form.bloodGp.value
+        const contact = form.contact.value
+        const city = form.city.value
+        const personData = {
+            dob, gender, bGroup, contact, city
+        }
+        console.log(personData);
     }
+    const bloodGroup = ["O+", "O-", "A+", "A-", "AB+", "B+", "B-"]
     return (
         <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
             <form onSubmit={handleInfo} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
@@ -37,12 +48,17 @@ const AddUserData = () => {
                             </div>
                         </div>
                         <div className="col-span-full sm:col-span-3">
-                            <label for="email" className="label text-sm">Email</label>
-                            <input id="email" type="email" placeholder="Email" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                            <label for="email" className="label text-sm">Blood Group</label>
+                            <select className="select select-ghost w-full max-w-xs">
+                                <option disabled selected>Select Your Blood Group</option>
+                                {
+                                    bloodGroup.map((group, i) => <option key={i} name="bloodGp">{group}</option>)
+                                }
+                            </select>
                         </div>
                         <div className="col-span-full sm:col-span-3">
                             <label className="label text-sm">Contact No.</label>
-                            <input type="number" placeholder="Contact Number" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                            <input name="contact" type="number" placeholder="Contact Number" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
                         </div>
                         <div className="col-span-full">
                             <label className="label text-sm">City</label>

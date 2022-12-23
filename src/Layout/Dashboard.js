@@ -19,7 +19,7 @@ const Dashboard = () => {
                         </div>
                         <ul className='pt-2 pb-4 space-y-1  capitalize'>
                             <li> <Link to='/dashboard'>overview</Link> </li>
-                            <li>add blood</li>
+                            <li><Link to='/dashboard/addblood'>add blood</Link></li>
                         </ul>
                     </div>
                 </div>

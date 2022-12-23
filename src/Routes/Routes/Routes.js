@@ -1,5 +1,6 @@
 import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
+import AddBlood from "../../pages/Dashboard/AddBlood/AddBlood";
 import Overview from "../../pages/Dashboard/Overview/Overview";
 import Donors from "../../pages/Donors/Donors";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Overview />
+            },
+            {
+                path: '/dashboard/addblood',
+                element: <AddBlood />
             }
         ]
     }

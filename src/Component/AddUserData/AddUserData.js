@@ -94,7 +94,6 @@ const AddUserData = () => {
                             <label className="label text-sm">City</label>
                             <input type="text" name='city' placeholder="Your City" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                         </div>
-
                         <button type='submit' className='btn'>Submit</button>
                     </div>
                 </fieldset>

@@ -82,8 +82,10 @@ const Header = () => {
                                 <Link to='/profile' className="justify-between">
                                     Profile
                                 </Link>
+                                <Link to='/dashboard' className="justify-between">
+                                    dashboard
+                                </Link>
                             </li>
-                            <li><Link to='/donoradd'>Become Donor</Link></li>
                             {user?.uid && <li><button type='button' onClick={handleLogOut}>LogOut</button></li>}
                         </ul>
                     </div>

@@ -1,12 +1,12 @@
-import AddUserData from "../../Component/AddUserData/AddUserData";
 import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
+import Overview from "../../pages/Dashboard/Overview/Overview";
 import Donors from "../../pages/Donors/Donors";
+import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
 import Profile from "../../pages/Profile/Profile";
 import SignIn from "../../pages/SignIn/SignIn";
 import SignUp from "../../pages/SignUp/SignUp";
-import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -14,6 +14,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -22,10 +23,6 @@ export const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />
-            },
-            {
-                path: '/donoradd',
-                element: <PrivateRoutes><AddUserData /></PrivateRoutes>
             },
             {
                 path: '/donors',
@@ -43,6 +40,12 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Overview />
+            }
+        ]
     }
 ])

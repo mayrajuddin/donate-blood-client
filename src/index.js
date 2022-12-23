@@ -8,17 +8,20 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import DonarsInfoProvider from './AuthContext/DonarsInfoProvider/DonarsInfoProvider';
 
 const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <DonarsInfoProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </DonarsInfoProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

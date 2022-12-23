@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../AuthContext/AuthProvider';
+// import UserNameValidation from '../../Component/UserNameValidation/UserNameValidation';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [regError, setRegError] = useState('')
+    // const [userName, error, handleChange] = UserNameValidation()
 
     const { createUser, loading, updateUser } = useContext(authContext)
-    console.log(errors.userName);
     const navigate = useNavigate()
     const handleSignUp = data => {
         setRegError('')
@@ -19,7 +20,6 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 saveUser(data.email, data.name, data.userName)
-                const user = result.user
                 const userInfo = {
                     displayName: data.name
                 }
@@ -29,7 +29,6 @@ const SignUp = () => {
                         console.log(err);
                     })
                 navigate('/info')
-                console.log(user);
             })
             .catch(err => {
                 setRegError(err.message)
@@ -55,8 +54,8 @@ const SignUp = () => {
                         <h3 className="text-center font-bold text-xl capitalize text-base-100 pb-3">sign up</h3>
                         <div className="form-control mb-3">
                             <label htmlFor='userName' className="label-text text-white mb-2">User Name</label>
-                            <input {...register('userName')} type="text" placeholder="Give your User userName" className="input w-full rounded-md" />
-                            {errors.userName && <p role="alert">{errors.userName?.message}</p>}
+                            <input {...register('userName', { required: 'give username', pattern: /^(?=.*[0-9])[a-zA-Z0-9]{4,10}$/, message: 'Username must be 4-10 characters long' })} type="text" placeholder="Give your User userName" className="input w-full rounded-md" />
+                            {errors.userName && <p className='text-sm text-primary pt-2 capitalize'>{errors.userName?.message}</p>}
                         </div>
                         <div className="form-control mb-3">
                             <label htmlFor='name' className="label-text text-white mb-2">Name</label>
@@ -75,7 +74,7 @@ const SignUp = () => {
                             <input {...register('confirm password', { required: true })} type="password" placeholder="confirm password" className="input w-full rounded-md" />
                         </div>
                         {regError && <p className="py-3">{regError}</p>}
-                        <p className="text-center text-lg capitalize text-secondary">already have an account ? <Link to='/signin'>sign in</Link></p>
+                        <p className="text-center text-md capitalize text-secondary">already have an account ? <Link to='/signin' className='text-primary font-medium'>sign in</Link></p>
                     </div>
                     <button type="submit" className='btn text-base-100'>Sign Up</button>
                 </form>

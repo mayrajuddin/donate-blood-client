@@ -1,20 +1,45 @@
 import React from 'react';
+import { useContext } from 'react';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { authContext } from '../../AuthContext/AuthProvider';
 
 const AddUserData = () => {
+    const { user } = useContext(authContext)
+    const [selectedBlood, setSelectedBlood] = useState()
+
+    const navigate = useNavigate()
+    const donarEmail = user.email
+
+    const handleChange = e => {
+        return setSelectedBlood(e.target.value)
+    }
     const handleInfo = e => {
         e.preventDefault()
         const form = e.target
         const dob = form.dob.value
         const gender = form.gender.value
-        const bGroup = form.bloodGp.value
         const contact = form.contact.value
         const city = form.city.value
         const personData = {
-            dob, gender, bGroup, contact, city
+            donarEmail, dob, gender, bloodGroup: selectedBlood, contact, city
         }
         console.log(personData);
+        fetch(`${process.env.REACT_APP_API_URI}/donars`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(personData)
+        }).then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    navigate('/')
+                    toast.success('details added succesfull')
+                }
+            })
+
     }
-    const bloodGroup = ["O+", "O-", "A+", "A-", "AB+", "B+", "B-"]
+    const bloodGroup = ["O+", "O-", "A+", "A-", "AB+", 'AB-', "B+", "B-"]
     return (
         <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
             <form onSubmit={handleInfo} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
@@ -49,10 +74,10 @@ const AddUserData = () => {
                         </div>
                         <div className="col-span-full sm:col-span-3">
                             <label for="email" className="label text-sm">Blood Group</label>
-                            <select className="select select-ghost w-full max-w-xs">
+                            <select value={selectedBlood} onChange={handleChange} className="select select-ghost w-full max-w-xs">
                                 <option disabled selected>Select Your Blood Group</option>
                                 {
-                                    bloodGroup.map((group, i) => <option key={i} name="bloodGp">{group}</option>)
+                                    bloodGroup.map((group, i) => <option key={i} name="bloodGp" value={group}>{group}</option>)
                                 }
                             </select>
                         </div>
@@ -62,39 +87,13 @@ const AddUserData = () => {
                         </div>
                         <div className="col-span-full">
                             <label className="label text-sm">City</label>
-                            <input type="text" placeholder="Your City" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                            <input type="text" name='city' placeholder="Your City" className="input w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
                         </div>
 
                         <button type='submit' className='btn'>Submit</button>
                     </div>
                 </fieldset>
-                <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
-                    <div className="space-y-2 col-span-full lg:col-span-1">
-                        <p className="font-medium">Profile</p>
-                        <p className="text-xs">Adipisci fuga autem eum!</p>
-                    </div>
-                    <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-                        <div className="col-span-full sm:col-span-3">
-                            <label for="username" className="text-sm">Username</label>
-                            <input id="username" type="text" placeholder="Username" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-                        </div>
-                        <div className="col-span-full sm:col-span-3">
-                            <label for="website" className="text-sm">Website</label>
-                            <input id="website" type="text" placeholder="https://" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-                        </div>
-                        <div className="col-span-full">
-                            <label for="bio" className="text-sm">Bio</label>
-                            <textarea id="bio" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900"></textarea>
-                        </div>
-                        <div className="col-span-full">
-                            <label for="bio" className="text-sm">Photo</label>
-                            <div className="flex items-center space-x-2">
-                                <img src="https://source.unsplash.com/30x30/?random" alt="" className="w-10 h-10 rounded-full dark:bg-gray-500 dark:bg-gray-700" />
-                                <button type="button" className="px-4 py-2 border rounded-md dark:border-gray-100">Change</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+
             </form>
         </section>
     );

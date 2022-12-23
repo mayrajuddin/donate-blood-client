@@ -1,10 +1,12 @@
 import AddUserData from "../../Component/AddUserData/AddUserData";
 import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
+import Donors from "../../pages/Donors/Donors";
 import Home from "../../pages/Home/Home/Home";
 import Profile from "../../pages/Profile/Profile";
 import SignIn from "../../pages/SignIn/SignIn";
 import SignUp from "../../pages/SignUp/SignUp";
+import PrivateRoutes from "../PrivateRoute/PrivateRoutes";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -22,8 +24,12 @@ export const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path: '/info',
-                element: <AddUserData />
+                path: '/donoradd',
+                element: <PrivateRoutes><AddUserData /></PrivateRoutes>
+            },
+            {
+                path: '/donors',
+                element: <Donors />
             },
             {
                 path: '/signup',

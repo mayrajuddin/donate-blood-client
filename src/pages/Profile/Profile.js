@@ -1,10 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useContext } from 'react';
+import { DonarsContext } from '../../AuthContext/DonarsInfoProvider/DonarsInfoProvider';
 
 const Profile = () => {
+    // const { donars } = useContext(DonarsContext)
+    const url = `${process.env.REACT_APP_API_URI}/donars`;
+
+    const { data: donars, isLoading } = useQuery({
+        queryKey: ['Donars'],
+        queryFn: async () => {
+            const res = await fetch(url)
+            const data = await res.json()
+            return data
+        }
+    })
+    console.log(donars);
     return (
         <div className='bg-slate-600 text-white'>
             <div className="container mx-auto">
-                <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
+                <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm">
                     <div className="space-y-2 col-span-full lg:col-span-1">
                         <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 bg-gray-900 text-gray-100">
                             <img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />

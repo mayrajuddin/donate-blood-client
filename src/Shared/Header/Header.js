@@ -77,16 +77,16 @@ const Header = () => {
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            {user?.uid && <li><p>{user?.displayName}</p></li>}
-                            <li>
-                                <Link to='/profile' className="justify-between">
+                            {user?.uid && <>
+                                <li><Link to='/profile' className="justify-between">
                                     Profile
-                                </Link>
-                                <Link to='/dashboard' className="justify-between">
+                                </Link></li>
+                                <li><Link to='/dashboard' className="justify-between">
                                     dashboard
-                                </Link>
-                            </li>
-                            {user?.uid && <li><button type='button' onClick={handleLogOut}>LogOut</button></li>}
+                                </Link></li>
+                                <li><button type='button' onClick={handleLogOut}>LogOut</button></li>
+                            </>
+                            }
                         </ul>
                     </div>
                 </div>

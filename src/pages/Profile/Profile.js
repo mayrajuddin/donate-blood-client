@@ -6,7 +6,7 @@ import Spinner from '../../Component/Spinner/Spinner';
 
 const Profile = () => {
     const { user } = useContext(authContext)
-    const url = `${process.env.REACT_APP_API_URI}/donars/${user.email}`;
+    const url = `${process.env.REACT_APP_API_URI}/donars/${user?.email}`;
     const { data: donar, isLoading } = useQuery(
         ['DonarProfile'],
         async () => {

@@ -70,14 +70,15 @@ const Header = () => {
                             </ul>
                         </div>
                     }
-                    <div className=" dropdown dropdown-end ml-2">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                {user?.photoURL ? <img src={user?.photoURL} alt="" /> : <img src="https://placeimg.com/80/80/people" alt='' />}
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            {user?.uid && <>
+
+                    {user?.uid && <>
+                        <div className=" dropdown dropdown-end ml-2">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    {user?.photoURL ? <img src={user?.photoURL} alt="" /> : <img src="https://placeimg.com/80/80/people" alt='' />}
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><Link to='/profile' className="justify-between">
                                     Profile
                                 </Link></li>
@@ -85,10 +86,10 @@ const Header = () => {
                                     dashboard
                                 </Link></li>
                                 <li><button type='button' onClick={handleLogOut}>LogOut</button></li>
-                            </>
-                            }
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    </>
+                    }
                 </div>
             </div>
         </header>

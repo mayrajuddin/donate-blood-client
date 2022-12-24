@@ -13,7 +13,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <div className='px-7 py-3'>
+                    <div className='px-7 py-3 w-44'>
                         <div className="text-lg font-bold">
                             <h2>Dashboard</h2>
                         </div>

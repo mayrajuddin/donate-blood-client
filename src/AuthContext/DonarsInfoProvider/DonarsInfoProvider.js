@@ -8,7 +8,7 @@ const DonarsInfoProvider = ({ children }) => {
 
     const url = `${process.env.REACT_APP_API_URI}/donars`;
 
-    const { data: donars, isLoading } = useQuery(
+    const { data: donars = {}, isLoading, refetch } = useQuery(
         ['Donars'],
         async () => {
             const res = await fetch(url)
@@ -16,8 +16,7 @@ const DonarsInfoProvider = ({ children }) => {
             return data
 
         })
-    const donarsInfo = { donars, isLoading }
-    console.log(donars);
+    const donarsInfo = { donars, isLoading, refetch }
     return (
         <DonarsContext.Provider value={donarsInfo}>
             {children}

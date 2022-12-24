@@ -1,14 +1,17 @@
 import React from 'react';
 import { useContext } from 'react';
 import { DonarsContext } from '../../AuthContext/DonarsInfoProvider/DonarsInfoProvider';
+import Spinner from '../../Component/Spinner/Spinner';
 
 const Donors = () => {
-    const { donars } = useContext(DonarsContext)
-    console.log(donars);
+    const { donars, isLoading } = useContext(DonarsContext)
+    if (isLoading) {
+        return <Spinner />
+    }
     return (
-        <div>
+        <div className='bg-sky-50 py-8'>
             <div className="container mx-auto">
-                <h3 className="text-2xl capitalize">all donors</h3>
+                <h3 className="text-2xl capitalize py-4">all donors</h3>
                 <div className="">
                     <div className="overflow-x-auto">
                         <table className="table w-full">
@@ -28,7 +31,7 @@ const Donors = () => {
                                         <tr key={donar._id}>
                                             <th>{i + 1}</th>
                                             <td>{donar.name}</td>
-                                            <td>{donar.contact} </td>
+                                            <td><a href={`tel:${donar.contact}`}>{donar.contact}</a> </td>
                                             <td>{donar.bloodGroup} </td>
                                             <td>{donar.lastdonation} </td>
                                             <td>{donar.city} </td>

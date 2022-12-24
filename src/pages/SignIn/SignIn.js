@@ -28,7 +28,7 @@ const SignIn = () => {
             })
     ]
     return (
-        <section className="py-8 bg-slate-300">
+        <section className="py-8 bg-sky-50">
             <div className="container mx-auto">
                 <div className="w-96 mx-auto p-6 bg-slate-700 rounded-md">
                     <form onSubmit={handleSubmit(handleSignIn)} className="flex flex-col space-y-6 ">
@@ -43,12 +43,12 @@ const SignIn = () => {
                                 <input {...register('password', { required: true })} type="password" placeholder="password" className="input w-full rounded-md" />
                             </div>
                         </div>
-                        <p className="text-center text-lg capitalize text-white">new to donate blood ? <Link className='font-semibold text-primary' to='/signup'>sign up</Link></p>
-                        <input type="submit" value="Sign in" className='capitalize text-lg btn text-base-100' />
+                        <input type="submit" value="Sign in" className='btn-primary capitalize text-lg btn text-base-100' />
                     </form>
                     <div className="text-gray-300 text-center my-4">OR</div>
                     <div className="text-center">
                         <button onClick={handleGoogleLogin} className="btn btn-outline btn-primary w-full mx-auto text-lg "> <FaGoogle className='mr-4 ' size={17} /> Google</button>
+                        <p className="text-center text-lg capitalize text-white mt-2">new to donate blood ? <Link className='font-semibold text-primary' to='/signup'>sign up</Link></p>
                     </div>
                 </div>
             </div>

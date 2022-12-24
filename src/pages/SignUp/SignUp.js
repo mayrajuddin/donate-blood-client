@@ -58,10 +58,11 @@ const SignUp = () => {
             })
     }
     return (
-        <section className="py-8 bg-slate-300">
+        <section className="py-8 bg-sky-50">
             <div className="container mx-auto">
                 <form onSubmit={handleSubmit(handleSignUp)} className='flex  gap-6  rounded-md shadow-sm justify-center'>
                     <fieldset className=" bg-slate-600 p-6 text-[#eee] rounded">
+                        <h4 className="text-center text-xl font-bold capitalize pb-3">sign up</h4>
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 ">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor='name' className="label text-white">Name</label>
@@ -78,10 +79,11 @@ const SignUp = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label className='label text-sm text-white'>Gender</label>
-                                <select {...register("gender", { required: true })} className='select w-full text-gray-900'>
-                                    <option value="female">female</option>
-                                    <option value="male">male</option>
-                                    <option value="other">other</option>
+                                <select {...register("gender", { required: true })} className='select w-full text-gray-900 capitalize'>
+                                    <option disabled selected className='py-1'>Gender</option>
+                                    <option value="female" className='py-1'>female</option>
+                                    <option value="male" className='py-1 '>male</option>
+                                    <option value="other" className='py-1'>other</option>
                                 </select>
                             </div>
                             <div className="col-span-full sm:col-span-3">
@@ -89,13 +91,13 @@ const SignUp = () => {
                                 <select {...register('bloodGroup', { required: true })} className="select text-gray-900 w-full max-w-xs">
                                     <option disabled selected>Select Your Blood Group</option>
                                     {
-                                        bloodGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
+                                        bloodGroup.map((group, i) => <option key={i} value={group} className=''>{group}</option>)
                                     }
                                 </select>
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label className="label text-sm text-white">Contact No.</label>
-                                <input {...register("contact", { required: true })} type="number" placeholder="Contact Number" className="input w-full rounded-md  text-gray-900" />
+                                <input {...register("contact", { required: true })} type="tel" placeholder="01234567891" className="input w-full rounded-md  text-gray-900" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label className="label text-sm text-white">Last Donation Date</label>
@@ -123,37 +125,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-
-
-// const e = () => {
-//     <form onSubmit={handleSubmit(handleSignUp)} className="flex flex-col space-y-12 w-96 mx-auto p-6 bg-slate-400">
-//         <div className="">
-//             <h3 className="text-center font-bold text-xl capitalize text-base-100 pb-3">sign up</h3>
-//             <div className="form-control mb-3">
-//                 <label htmlFor='userName' className="label-text text-white mb-2">User Name</label>
-//                 <input {...register('userName', { required: 'give username', pattern: /^(?=.*[0-9])[a-zA-Z0-9]{4,10}$/, message: 'Username must be 4-10 characters long' })} type="text" placeholder="Give your User userName" className="input w-full rounded-md" />
-//                 {errors.userName && <p className='text-sm text-primary pt-2 capitalize'>{errors.userName?.message}</p>}
-//             </div>
-//             <div className="form-control mb-3">
-//                 <label htmlFor='name' className="label-text text-white mb-2">Name</label>
-//                 <input {...register('name')} type="text" placeholder="your name" className="input w-full rounded-md" />
-//             </div>
-//             <div className="form-control mb-3">
-//                 <label htmlFor='email' className="label-text text-white mb-2">Email</label>
-//                 <input {...register('email', { required: true })} type="email" placeholder="your email" className="input w-full rounded-md" />
-//             </div>
-//             <div className="form-control mb-3">
-//                 <label htmlFor='password' className="label-text text-white mb-2">Password</label>
-//                 <input {...register('password', { required: true })} type="password" placeholder="password" className="input w-full rounded-md" />
-//             </div>
-//             <div className="form-control mb-3">
-//                 <label htmlFor='confirm password' className="label-text text-white mb-2">Confirm Password</label>
-//                 <input {...register('confirm password', { required: true })} type="password" placeholder="confirm password" className="input w-full rounded-md" />
-//             </div>
-//             {regError && <p className="py-3">{regError}</p>}
-//             <p className="text-center text-md capitalize text-secondary">already have an account ? <Link to='/signin' className='text-primary font-medium'>sign in</Link></p>
-//         </div>
-//         <button type="submit" className='btn text-base-100'>Sign Up</button>
-//     </form>
-// }

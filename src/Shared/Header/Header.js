@@ -8,9 +8,9 @@ const Header = () => {
     const { logOut, user, } = useContext(authContext)
     const menuItems = <>
         <li> <Link to='/' className='capitalize font-semibold'> Home </Link> </li>
-        <li> <Link to='/' className='capitalize font-semibold'> donate </Link> </li>
+        <li> <Link to='/bank' className='capitalize font-semibold'> blood bank </Link> </li>
         <li> <Link to='/donors' className='capitalize font-semibold'> donors </Link> </li>
-        <li> <Link to='/' className='capitalize font-semibold'> about us </Link> </li>
+        <li> <Link to='/about' className='capitalize font-semibold'> about us </Link> </li>
     </>
     const handleLogOut = () => {
         logOut()

@@ -46,7 +46,6 @@ const SignUp = () => {
             })
     }
     const saveUser = (donar) => {
-        // const donar = { name, email, dob, gender, bloodGroup, contact, lastdonation, city }
         console.log(donar);
         fetch(`${process.env.REACT_APP_API_URI}/donars`, {
             method: 'POST',

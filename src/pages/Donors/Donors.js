@@ -4,10 +4,11 @@ import { DonarsContext } from '../../AuthContext/DonarsInfoProvider/DonarsInfoPr
 import Spinner from '../../Component/Spinner/Spinner';
 
 const Donors = () => {
-    const { donars, isLoading } = useContext(DonarsContext)
+    const { donars, isLoading, refetch } = useContext(DonarsContext)
     if (isLoading) {
         return <Spinner />
     }
+    refetch()
     return (
         <div className='bg-sky-50 py-8'>
             <div className="container mx-auto">

@@ -1,5 +1,7 @@
 import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
+import About from "../../pages/About/About";
+import BloodBank from "../../pages/BloodBank/BloodBank";
 import AddBlood from "../../pages/Dashboard/AddBlood/AddBlood";
 import Overview from "../../pages/Dashboard/Overview/Overview";
 import Donors from "../../pages/Donors/Donors";
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
             {
                 path: '/donors',
                 element: <Donors />
+            },
+            {
+                path: '/bank',
+                element: <BloodBank />
+            },
+            {
+                path: '/about',
+                element: <About />
             },
             {
                 path: '/signup',
